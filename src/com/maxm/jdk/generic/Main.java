@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.maxm.jdk.util.PrintUtil;
+import org.apache.log4j.Logger;
 
 public class Main {
+	private static Logger logger = Logger.getLogger(Main.class);
+
 	public void show(List<? extends Resource> datas) {
 		for (Resource r : datas) {
-			PrintUtil.println(r);
+			logger.info(r);
 		}
 	}
 
@@ -25,6 +27,7 @@ public class Main {
 		Hero e = new Hero();
 		e.setId(new Random().nextLong());
 		e.setName("赵云");
+		logger.info(e.getName());
 		datas.add(e);
 		new Main().show(datas);
 
