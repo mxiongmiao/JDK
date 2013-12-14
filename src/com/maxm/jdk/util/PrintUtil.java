@@ -6,7 +6,7 @@ public class PrintUtil {
 	private static PrintStream out = System.out;
 
 	public static void println(Object obj) {
-		out.print(obj);
+		out.println(obj);
 	}
 
 	public static void println() {
