@@ -4,7 +4,7 @@ import com.maxm.jdk.util.PrintUtil;
 import com.maxm.jdk.util.TimeUtil;
 
 public class BaseResource {
-	
+
 	protected long destroyTime;
 
 	protected void destroy() {
@@ -17,7 +17,7 @@ public class BaseResource {
 		return destroyTime;
 	}
 
-	public void setDestroyTime(long destroyTime) {
+	public void setDestroyTime(final long destroyTime) {
 		this.destroyTime = destroyTime;
 	}
 }

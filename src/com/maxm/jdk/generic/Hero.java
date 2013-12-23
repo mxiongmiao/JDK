@@ -6,7 +6,7 @@ public class Hero extends Resource {
 		super();
 	}
 
-	protected Hero(long id, String name) {
+	protected Hero(final long id, final String name) {
 		super(id, name);
 	}
 
