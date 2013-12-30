@@ -1,4 +1,4 @@
-package com.maxm.thread;
+package com.maxm.jdk.thread;
 
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;

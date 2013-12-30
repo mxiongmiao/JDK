@@ -1,4 +1,4 @@
-package com.maxm.thread;
+package com.maxm.jdk.thread;
 
 public class Reader implements Runnable{
 	
