@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 import com.maxm.jdk.util.PrintUtil;
 
-// FIXME
+// FIXME finish other funcs
 public class MyArrayList<E> implements MyList<E> {
 
 	private transient Object[] elemntData;
