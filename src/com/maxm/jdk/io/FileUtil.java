@@ -87,11 +87,18 @@ public class FileUtil {
 		buffer.position(1);
 		buffer.limit(3);
 		ByteBuffer slice = buffer.slice();
+		ByteBuffer oldBuffer = buffer.asReadOnlyBuffer();
+		vieBuffer(oldBuffer);
+		PrintUtil.println(";;;");
 		for (int i = 0; i < slice.capacity(); i++) {
 			byte b = slice.get(i);
 			b *= 2;
 			slice.put(i, b);
 		}
+		vieBuffer(buffer);
+	}
+
+	private static void vieBuffer(ByteBuffer buffer) {
 		// 查看原来缓冲区内容
 		buffer.position(0);
 		buffer.limit(buffer.capacity());
