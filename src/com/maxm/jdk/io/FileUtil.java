@@ -44,6 +44,10 @@ public class FileUtil {
 		FileChannel fci = new FileInputStream(from).getChannel();
 		FileChannel fco = new FileOutputStream(to).getChannel();
 
+		// like ByteBuffer.allocate(1024)
+		// byte[] b = new byte[1024];
+		// ByteBuffer bf = ByteBuffer.wrap(b);
+
 		ByteBuffer buffer = ByteBuffer.allocate(1024);
 		for (;;) {
 			// 从输入通道读取数据到缓冲区
@@ -65,12 +69,34 @@ public class FileUtil {
 	}
 
 	public static void main(String[] args) throws IOException {
-		File f = new File("E:/快盘/work/rekoo/my脚本/queryUser.sh");
+		File f = new File("E:/GitHub/JDK/src/com/maxm/jdk/io/queryUser.sh");
 		FileUtil fr = new FileUtil();
 		fr.read(f);
 		PrintUtil.println(fr.data);
 
-		File f2 = new File("E:/GitHub/JDK/src/com/maxm/jdk/io/queryUser.sh");
+		File f2 = new File("E:/GitHub/JDK/src/com/maxm/jdk/io/queryUser2.sh");
 		fr.copy(f, f2);
+
+		// 构建并填充一缓冲区
+		ByteBuffer buffer = ByteBuffer.allocate(10);
+		PrintUtil.println("limit:" + buffer.limit());
+		for (int i = 0; i < buffer.capacity(); i++) {
+			buffer.put((byte) i);
+		}
+		// 创建子缓冲区(分片)
+		buffer.position(1);
+		buffer.limit(3);
+		ByteBuffer slice = buffer.slice();
+		for (int i = 0; i < slice.capacity(); i++) {
+			byte b = slice.get(i);
+			b *= 2;
+			slice.put(i, b);
+		}
+		// 查看原来缓冲区内容
+		buffer.position(0);
+		buffer.limit(buffer.capacity());
+		while (buffer.remaining() > 0) {
+			PrintUtil.println(buffer.get());
+		}
 	}
 }
