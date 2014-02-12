@@ -43,7 +43,8 @@ public final class FileUtil {
 		FileChannel fci = new FileInputStream(from).getChannel();
 		FileChannel fco = new FileOutputStream(to).getChannel();
 
-		ByteBuffer buffer = ByteBuffer.allocate(1024);
+		// ByteBuffer buffer = ByteBuffer.allocate(1024);
+		ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
 		for (;;) {
 			// 从输入通道读取数据到缓冲区
 			buffer.clear();
