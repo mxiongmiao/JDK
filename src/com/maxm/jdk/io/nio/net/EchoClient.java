@@ -1,26 +1,67 @@
 package com.maxm.jdk.io.nio.net;
 
-import java.nio.ByteBuffer;
-import java.util.LinkedList;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 
-/**
- * The client object. This is currently only used to queue the data waiting to
- * be written to the client.
- */
+import com.maxm.jdk.util.PrintUtil;
+
+// Blocking client
 public class EchoClient {
-	private LinkedList<ByteBuffer> outq;
+	int port;
 
-	EchoClient() {
-		outq = new LinkedList<ByteBuffer>();
+	public EchoClient(int port) {
+		super();
+		this.port = port;
 	}
 
-	// Return the output queue.
-	public LinkedList<ByteBuffer> getOutputQueue() {
-		return outq;
+	private void sendQ(String msg) {
+		BufferedWriter bw = null;
+		BufferedReader br = null;
+		Socket s = new Socket();
+
+		try {
+			s.connect(new InetSocketAddress(InetAddress.getLocalHost(), port));
+			// req
+			bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream(),
+					EchoProtocal.UTF8));
+			bw.write(msg);
+			bw.flush();
+			// resp
+			PrintUtil.print("server resp:");
+			while (true) {
+				br = new BufferedReader(new InputStreamReader(
+						s.getInputStream(), "utf-8"));
+				String line = null;
+				while ((line = br.readLine()) != null) {
+					PrintUtil.println(line);
+				}
+				break;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				br.close();
+				bw.close();
+				s.close();
+			} catch (IOException e) {
+				br = null;
+				bw = null;
+				s = null;
+			}
+		}
+
 	}
 
-	// Enqueue a ByteBuffer on the output queue.
-	public void enqueue(ByteBuffer bb) {
-		outq.addFirst(bb);
+	public static void main(String[] args) throws IOException {
+		for (int i = 0; i < 10; i++) {
+			new EchoClient(12345).sendQ("hi server");
+		}
 	}
 }
