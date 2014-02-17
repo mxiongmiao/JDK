@@ -14,22 +14,22 @@ public class MsgQueue<E> {
 		queue = new LinkedList<>();
 	}
 
-	public void pushMsg(E e) {
+	public void addMsg(E e) {
 		queue.addLast(e);
 	}
 
-	public E popMsg() {
+	public E delMsg() {
 		return queue.removeFirst();
 	}
 
 	public static void main(String[] args) {
 		MsgQueue<String> mq = new MsgQueue<>();
-		mq.pushMsg("hi");
-		mq.pushMsg("jdk");
-		mq.pushMsg("1.7");
+		mq.addMsg("hi");
+		mq.addMsg("jdk");
+		mq.addMsg("1.7");
 
-		PrintUtil.println(mq.popMsg());
-		PrintUtil.println(mq.popMsg());
-		PrintUtil.println(mq.popMsg());
+		PrintUtil.println(mq.delMsg());
+		PrintUtil.println(mq.delMsg());
+		PrintUtil.println(mq.delMsg());
 	}
 }
