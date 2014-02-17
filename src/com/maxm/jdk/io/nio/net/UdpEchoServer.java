@@ -11,12 +11,12 @@ public class UdpEchoServer {
 	public static void main(String[] args) throws IOException {
 		DatagramSocket ds = new DatagramSocket(SERVERPORT);
 		byte[] buf = new byte[ECHOMAX];
-		DatagramPacket dp = new DatagramPacket(buf, ECHOMAX);
+		DatagramPacket packet = new DatagramPacket(buf, ECHOMAX);
 
 		while (true) {
-			ds.receive(dp);
-			ds.send(dp);
-			dp.setLength(ECHOMAX);
+			ds.receive(packet);
+			ds.send(packet);
+			packet.setLength(ECHOMAX);
 		}
 	}
 }
