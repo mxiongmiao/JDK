@@ -11,5 +11,13 @@ public class OperatorTest {
 		PrintUtil.println(1 ^ 3);
 		// 按位与
 		PrintUtil.println(1 & 3);
+		// 非
+		byte i = 127;
+		byte j = ++i;
+		PrintUtil.println(j);
+		PrintUtil.println(~5);
+		PrintUtil.println(~127);
+		byte r = (byte)((byte)126+(byte)3);
+		PrintUtil.println(r);
 	}
 }
