@@ -8,6 +8,7 @@ public class UdpEchoServer {
 	private static final int ECHOMAX = 255;
 	private static final int SERVERPORT = 11111;
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args) throws IOException {
 		DatagramSocket ds = new DatagramSocket(SERVERPORT);
 		byte[] buf = new byte[ECHOMAX];
