@@ -1,7 +1,9 @@
 package com.maxm.jdk.io.vote;
 
 public class VoteMsg {
+	// true 表示该消息是投票请求，否则为查询请求
 	private boolean vote;
+	// 表示该消息是响应还是请求，true为响应，false为请求
 	private boolean resp;
 	private int candidateId;
 	private long voteCount;
